@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath('../'))
 
 # -- Project information -----------------------------------------------------
 
-project = u'Hidden Variable'
+project = u'Hidden Variables'
 copyright = u'2018, Danh-Tai Hoang'
 author = u'Danh-Tai Hoang'
 
@@ -128,7 +128,7 @@ html_sidebars = {
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'HiddenVariabledoc'
+htmlhelp_basename = 'HiddenVariablesdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -155,7 +155,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'HiddenVariable.tex', u'Hidden Variable Documentation',
+    (master_doc, 'HiddenVariables.tex', u'Hidden Variables Documentation',
      u'Danh-Tai Hoang', 'manual'),
 ]
 
@@ -165,7 +165,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'Hiddenvariable', u'Hidden variable Documentation',
+    (master_doc, 'HiddenVariables', u'Hidden Variables Documentation',
      [author], 1)
 ]
 
@@ -176,8 +176,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'HiddenVariable', u'Hidden Variable Documentation',
-     author, 'HiddenVariable', 'One line description of project.',
+    (master_doc, 'HiddenVariables', u'Hidden Variables Documentation',
+     author, 'HiddenVariables', 'One line description of project.',
      'Miscellaneous'),
 ]
 

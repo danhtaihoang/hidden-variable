@@ -8,6 +8,6 @@ From a subset of variables, we recovered sucessfully
 
 The peformace of FEM is significantly better than other existing methods.
 
-Application of FEM in analyzing recording neuronal activity and stock market data are shown in our paper (Ref).
+Application of FEM in analyzing of recording neuronal activity and stock market data are shown in our paper (Ref).
 
 
