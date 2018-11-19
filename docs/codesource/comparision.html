@@ -29,7 +29,7 @@
     <link rel="search" title="Search" href="../search.html" >
     <link rel="top" title="Hidden Variables 0.0.1 documentation" href="../index.html" >
     <link rel="next" title="Conclusion" href="../conclusion.html" >
-    <link rel="prev" title="Result" href="hidden.html" > 
+    <link rel="prev" title="Results" href="hidden.html" > 
   </head>
   <body>
 
@@ -65,7 +65,7 @@
            accesskey="N">next</a>
       </li>
       <li class="active">
-        <a href="hidden.html" title="Result"
+        <a href="hidden.html" title="Results"
            accesskey="P">previous</a>
       </li>
     </ul>
@@ -80,7 +80,7 @@
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
   <p class="topless"><a href="hidden.html"
-                        title="previous chapter">Result</a></p>
+                        title="previous chapter">Results</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="../conclusion.html"
                         title="next chapter">Conclusion</a></p>
@@ -271,10 +271,12 @@ div.nboutput div.output_area.stderr {
 </style>
 <div class="section" id="Comparision:-FEM-vs.-other-methods">
 <h1>Comparision: FEM vs. other methods<a class="headerlink" href="#Comparision:-FEM-vs.-other-methods" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/hidden-variables/master?filepath=sphinx%2Fcodesource%2Fhidden.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
-<p>We compare the performance of Free Energy Minimization (FEM) with other
-existing methods based on mean field approximations and Maximum
-Likelihood Estimation (MLE).</p>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/danhtaihoang/hidden-variable/master?filepath=sphinx%2Fcodesource%2Fhidden.ipynb"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
+<p>In this section, we compare the performance of Free Energy Minimization
+(FEM) method with other existing methods based on mean field
+approximations and Maximum Likelihood Estimation (MLE). We will see that
+FEM produces a higher accuracy than other methods. Additionally, FEM
+works much faster than MLE.</p>
 <p>First of all, we import the necessary packages to the jupyter notebook:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
@@ -284,6 +286,7 @@ Likelihood Estimation (MLE).</p>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">timeit</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">simulate</span>
 <span class="kn">import</span> <span class="nn">inference</span>
@@ -308,19 +311,19 @@ Likelihood Estimation (MLE).</p>
 <span class="n">w0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">g</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n0</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n0</span><span class="p">,</span><span class="n">n0</span><span class="p">))</span>
 
 <span class="c1"># generating time-series data</span>
-<span class="n">l</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">n0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">l</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">n0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">s0</span> <span class="o">=</span> <span class="n">simulate</span><span class="o">.</span><span class="n">generate_data</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<p>Suppose only a subset of variables is observed.</p>
+<p>Suppose only a subset <code class="docutils literal notranslate"><span class="pre">s</span></code> of variables is observed.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">nh0</span> <span class="o">=</span> <span class="mi">10</span>
+<span></span><span class="n">nh0</span> <span class="o">=</span> <span class="mi">15</span>
 <span class="n">n</span> <span class="o">=</span> <span class="n">n0</span> <span class="o">-</span> <span class="n">nh0</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">s0</span><span class="p">[:,:</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
@@ -337,8 +340,8 @@ Likelihood Estimation (MLE).</p>
 </pre></div>
 </div>
 </div>
-<p>Because we will plot the prediction result of every methods, let us
-write a plot function.</p>
+<p>Let us write a plot function to compare actual couplings and inferred
+couplings.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [5]:
@@ -399,9 +402,7 @@ write a plot function.</p>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;nMF:&#39;</span><span class="p">)</span>
 <span class="n">cost_obs</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;nmf&#39;</span><span class="p">)</span>
-
 <span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">hidden_coordinate</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">s0</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span><span class="p">)</span>
-
 <span class="n">plot_result</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -432,9 +433,7 @@ nMF:
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;TAP:&#39;</span><span class="p">)</span>
 <span class="n">cost_obs</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;tap&#39;</span><span class="p">)</span>
-
 <span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">hidden_coordinate</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">s0</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span><span class="p">)</span>
-
 <span class="n">plot_result</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -465,9 +464,7 @@ TAP:
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;eMF:&#39;</span><span class="p">)</span>
 <span class="n">cost_obs</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;emf&#39;</span><span class="p">)</span>
-
 <span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">hidden_coordinate</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">s0</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span><span class="p">)</span>
-
 <span class="n">plot_result</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -492,47 +489,85 @@ eMF:
 <h2>Maximum Likelihood Estimation<a class="headerlink" href="#Maximum-Likelihood-Estimation" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [ ]:
+<span></span>In [9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;MLE:&#39;</span><span class="p">)</span>
-<span class="n">cost_obs</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mle&#39;</span><span class="p">)</span>
 
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+
+<span class="n">cost_obs</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;mle&#39;</span><span class="p">)</span>
 <span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">hidden_coordinate</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">s0</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span><span class="p">)</span>
+
+<span class="n">stop_time</span><span class="o">=</span><span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+<span class="n">run_time</span><span class="o">=</span><span class="n">stop_time</span><span class="o">-</span><span class="n">start_time</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;run_time:&#39;</span><span class="p">,</span><span class="n">run_time</span><span class="p">)</span>
 
 <span class="n">plot_result</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 MLE:
+(&#39;run_time:&#39;, 9970.889276981354)
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/codesource_comparision_17_1.png" src="../_images/codesource_comparision_17_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="Free-Energy-Minimization">
 <h2>Free Energy Minimization<a class="headerlink" href="#Free-Energy-Minimization" title="Permalink to this headline">¶</a></h2>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [ ]:
+<span></span>In [10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;FEM:&#39;</span><span class="p">)</span>
-<span class="n">cost_obs</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;fem&#39;</span><span class="p">)</span>
 
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+
+<span class="n">cost_obs</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;fem&#39;</span><span class="p">)</span>
 <span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">hidden_coordinate</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">s0</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span><span class="p">)</span>
+
+<span class="n">stop_time</span><span class="o">=</span><span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+<span class="n">run_time</span><span class="o">=</span><span class="n">stop_time</span><span class="o">-</span><span class="n">start_time</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;run_time:&#39;</span><span class="p">,</span><span class="n">run_time</span><span class="p">)</span>
 
 <span class="n">plot_result</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+FEM:
+(&#39;run_time:&#39;, 515.2393028736115)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/codesource_comparision_19_1.png" src="../_images/codesource_comparision_19_1.png" />
+</div>
+</div>
 <p>From the above results, we conclude that FEM outperforms other existing
-methods.</p>
+methods. Beside the better performance, FEM works much faster than MLE.
+For instance, to solve the same problem, FEM takes only 515 seconds,
+however, MLE takes 9970 seconds.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [ ]:
