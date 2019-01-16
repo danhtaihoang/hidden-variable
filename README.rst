@@ -24,4 +24,4 @@ Code Source
 
 Reference
 ----------------------------
-Danh-Tai Hoang, Vipul Periwal, and Junghyo Jo, "Network Inference with Hidden Variables" (in preparation).
+Danh-Tai Hoang, Junghyo Jo and Vipul Periwal, "Network Inference with Hidden Variables" (in preparation).
