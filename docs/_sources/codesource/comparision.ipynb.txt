@@ -6,7 +6,7 @@
    "source": [
     "# Comparision: FEM vs. other methods\n",
     "\n",
-    "[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/nihcompmed/hidden-variable/master?filepath=sphinx%2Fcodesource%2Fhidden.ipynb)\n",
+    "[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/danhtaihoang/hidden-variable/master?filepath=sphinx%2Fcodesource%2Fhidden.ipynb)\n",
     "\n",
     "In this section, we compare the performance of Free Energy Minimization (FEM) method with other existing methods based on mean field approximations and Maximum Likelihood Estimation (MLE). We shall show that FEM is more accurate than other methods. Additionally, FEM is computationally much faster than MLE.\n",
     "\n",
