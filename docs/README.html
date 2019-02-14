@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Table of Contents &mdash; Hidden Variables 0.0.1 documentation</title>
+    <title>Network Inference with Hidden Variables &mdash; Hidden Variables 0.0.1 documentation</title>
     
     <link rel="stylesheet" type="text/css" href="_static/css/spc-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="_static/css/spc-extend.css">
@@ -27,8 +27,7 @@
     <script type="text/javascript" src="_static/js/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" >
     <link rel="search" title="Search" href="search.html" >
-    <link rel="top" title="Hidden Variables 0.0.1 documentation" href="#" >
-    <link rel="next" title="Model" href="model.html" > 
+    <link rel="top" title="Hidden Variables 0.0.1 documentation" href="index.html" > 
   </head>
   <body>
 
@@ -48,6 +47,8 @@
     <ul class="nav nav-pills pull-left">
         <li class="active"><a href="https://www.niddk.nih.gov/research-funding/at-niddk/labs-branches/LBM">LBM</a></li>
         <li class="active"><a href="https://github.com/nihcompmed">NIHCOMPMED</a></li>
+	
+        <li class="active"><a href="index.html">Hidden Variables 0.0.1 documentation</a></li>
 	 
     </ul>
               
@@ -56,10 +57,6 @@
       <li class="active">
         <a href="genindex.html" title="General Index"
            accesskey="I">index</a>
-      </li>
-      <li class="active">
-        <a href="model.html" title="Model"
-           accesskey="N">next</a>
       </li>
     </ul>
               
@@ -71,9 +68,6 @@
 	<div class="row-fluid">
       <div class="spc-rightsidebar span3">
         <div class="sphinxsidebarwrapper">
-  <h4>Next topic</h4>
-  <p class="topless"><a href="model.html"
-                        title="next chapter">Model</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -93,49 +87,20 @@
         <div class="bodywrapper">
           <div class="body" id="spc-section-body">
             
-  <div class="section" id="table-of-contents">
-<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="model.html">Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="method.html">Method</a></li>
-<li class="toctree-l1"><a class="reference internal" href="codesource/hidden.html">Results</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="codesource/hidden.html#Ignoring-hidden-variables">Ignoring hidden variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="codesource/hidden.html#Including-hidden-variables">Including hidden variables</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="codesource/hidden.html#Inferring-interactions">Inferring interactions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="codesource/hidden.html#Inferring-configurations-of-hidden-variables">Inferring configurations of hidden variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="codesource/hidden.html#Inferring-number-of-hidden-variables">Inferring number of hidden variables</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="codesource/comparision.html">Comparision: FEM vs. other methods</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="codesource/comparision.html#Naive-Mean-Field-approximation">Naive Mean-Field approximation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="codesource/comparision.html#Thouless-Anderson-Palmer-mean-field-approximation">Thouless-Anderson-Palmer mean field approximation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="codesource/comparision.html#Exact-mean-field-approximation">Exact mean field approximation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="codesource/comparision.html#Maximum-Likelihood-Estimation">Maximum Likelihood Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="codesource/comparision.html#Free-Energy-Minimization">Free Energy Minimization</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
-</ul>
-</div>
-<div class="section" id="network-inference-with-hidden-variables">
-<h2>Network Inference with Hidden Variables<a class="headerlink" href="#network-inference-with-hidden-variables" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+  <div class="section" id="network-inference-with-hidden-variables">
+<h1>Network Inference with Hidden Variables<a class="headerlink" href="#network-inference-with-hidden-variables" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This work was motivated by the fact that real-world data often contains only subsets of variables. The hidden variables can influence the observed ones; ignoring hidden variables in network inference may lead to poor prediction results. Our ultimate goal was to develop a data-driven method that can use the configurations of observed variables to infer the interactions (observed-to-observed, hidden-to-observed, observed-to-hidden, and hidden-to-hidden), the configuration of hidden variables, and the number of hidden variables.</p>
 <p>The Jupyter notebook presents only the core idea of our method and example with simulated data. The application in analyzing of experimental data such as recording neuronal activity and stock market are shown in our paper.</p>
 </div>
 <div class="section" id="interactive-notebook">
-<h1>Interactive notebook<a class="headerlink" href="#interactive-notebook" title="Permalink to this headline">¶</a></h1>
+<h2>Interactive notebook<a class="headerlink" href="#interactive-notebook" title="Permalink to this headline">¶</a></h2>
 <p>Use Binder to run our code online. You are welcome to change the parameters and edit the jupyter notebooks as you want.</p>
 <a class="reference external image-reference" href="https://mybinder.org/v2/gh/danhtaihoang/hidden-variables/master?filepath=sphinx%2Fcodesource"><img alt="https://mybinder.org/badge.svg" src="https://mybinder.org/badge.svg" /></a>
 </div>
 <div class="section" id="links">
-<h1>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h1>
+<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>Code Documentation</dt>
 <dd><a class="reference external" href="https://danhtaihoang.github.io/hidden-variable">https://danhtaihoang.github.io/hidden-variable</a></dd>
@@ -144,11 +109,11 @@
 </dl>
 </div>
 <div class="section" id="reference">
-<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <p>Danh-Tai Hoang, Junghyo Jo, and Vipul Periwal, “Data-driven inference of hidden nodes in networks” (under review), <a class="reference external" href="https://arxiv.org/abs/1901.04122">arXiv:1901.04122</a>.</p>
 </div>
 <div class="section" id="selected-figures">
-<h1>Selected Figures<a class="headerlink" href="#selected-figures" title="Permalink to this headline">¶</a></h1>
+<h2>Selected Figures<a class="headerlink" href="#selected-figures" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><strong>Network reconstruction from partial observations</strong></li>
 </ul>
@@ -165,6 +130,7 @@
 <li><strong>Hidden degrees of freedom for the classification of handwritten digit images</strong></li>
 </ul>
 <a class="reference internal image-reference" href="_images/fig4.png"><img alt="_images/fig4.png" src="_images/fig4.png" style="width: 420px;" /></a>
+</div>
 </div>
 
 
