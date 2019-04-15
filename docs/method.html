@@ -107,7 +107,7 @@
 <h1>Method<a class="headerlink" href="#method" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">When the configuration of an entire system is observed, we can apply
-our method, Expectation Reflection (ER) [formerly Free Energy Minimization (MLE)], to infer the interactions
+our method, Expectation Reflection (ER) [formerly Free Energy Minimization (FEM)], to infer the interactions
 <span class="math notranslate nohighlight">\(W_{ij}\)</span> between variables. Briefly, This method uses an iterative algorithm to update the model of the influence on each position from other positions according to the ratio of the observation to the corresponding model expectation. This approach completely separates model updates from minimization of a cost function measuring goodness of fit, so that this cost function can be used as the stopping criterion of the iteration. The algorithm of ER method contains the following steps:</div>
 <div class="line">(i) Initialize <span class="math notranslate nohighlight">\(W_{ij}\)</span> at random;</div>
 <div class="line">(ii) Compute local field <span class="math notranslate nohighlight">\(H_i(t) = \sum_j W_{ij} \sigma_j (t)\)</span>;</div>
