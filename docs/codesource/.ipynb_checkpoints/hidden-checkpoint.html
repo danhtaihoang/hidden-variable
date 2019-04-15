@@ -342,7 +342,7 @@ sucessfully the interactions between variables:</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">w</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">fem</span><span class="p">(</span><span class="n">s0</span><span class="p">)</span>
+<span></span><span class="n">w</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">er</span><span class="p">(</span><span class="n">s0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -431,7 +431,7 @@ the observed variables:</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">w</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">fem</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span></span><span class="n">w</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">er</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -517,7 +517,7 @@ variables.</p>
 <div class="input_area highlight-ipython2 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">nh</span> <span class="o">=</span> <span class="n">nh0</span>
 
-<span class="n">cost_obs</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;fem&#39;</span><span class="p">)</span>
+<span class="n">cost_obs</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sh</span> <span class="o">=</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;er&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -685,7 +685,7 @@ observed variables <code class="docutils literal notranslate"><span class="pre">
 <span class="n">nnh</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nh_list</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">discrepancy</span><span class="p">(</span><span class="n">nh</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;fem&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">inference</span><span class="o">.</span><span class="n">infer_hidden</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">nh</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;er&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">multiprocessing</span>
 <span class="n">nPC</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nnh</span><span class="p">,</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>

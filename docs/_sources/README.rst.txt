@@ -24,7 +24,7 @@ Code Source
 
 Reference
 ----------------------------
-Danh-Tai Hoang, Junghyo Jo, and Vipul Periwal, "Data-driven inference of hidden nodes in networks" (under review), `arXiv:1901.04122 <https://arxiv.org/abs/1901.04122>`_.
+Danh-Tai Hoang, Junghyo Jo, and Vipul Periwal, "Data-driven inference of hidden nodes in networks", `Physical Review E, 99, 042114 (2019) <https://journals.aps.org/pre/abstract/10.1103/PhysRevE.99.042114>`_.
 
 Selected Figures
 ----------------------------

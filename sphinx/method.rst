@@ -2,15 +2,12 @@ Method
 ===========================
 
 | When the configuration of an entire system is observed, we can apply
-  our method, Free Energy Minimization (FEM), to infer the interactions
-  :math:`W_{ij}` between variables. Briefly, this method defines a free
-  energy of data, and shows that minimizing this free energy leads to an
-  effective estimation of interactions (Ref). The algorithm of FEM
-  method contains the following steps:
+  our method, Expectation Reflection (ER) [formerly Free Energy Minimization (MLE)], to infer the interactions
+  :math:`W_{ij}` between variables. Briefly, This method uses an iterative algorithm to update the model of the influence on each position from other positions according to the ratio of the observation to the corresponding model expectation. This approach completely separates model updates from minimization of a cost function measuring goodness of fit, so that this cost function can be used as the stopping criterion of the iteration. The algorithm of ER method contains the following steps:
 | (i) Initialize :math:`W_{ij}` at random;
 | (ii) Compute local field :math:`H_i(t) = \sum_j W_{ij} \sigma_j (t)`;
-| (iii) Compute data energy
-  :math:`E_i(t) = \sigma_i(t+1) / \langle  \sigma(t+1) \rangle_{\text{model}} H_i(t),`
+| (iii) Update the local field:
+  :math:`H_i^2(t) = \sigma_i(t+1) / \langle  \sigma(t+1) \rangle_{\text{model}} H_i(t),`
   where :math:`\langle  \sigma(t+1) \rangle_{\text{model}}` represents
   model expectation. For binary variables,
   :math:`\langle  \sigma(t+1) \rangle_{\text{model}} = \tanh H_{i}(t)`;
@@ -37,7 +34,7 @@ Method
 | (ii) Infer coupling weights :math:`W_{ij}` including
   observed-to-observed, hidden-to-observed, observed-to-hidden, and
   hidden-to-hidden interactions from the configurations of variables by
-  using the FEM method;
+  using the ER method;
 | (iii) Flip the state of hidden variables with a probability
   :math:`\mathcal{L}_{2} /(\mathcal{L}_{1}+\mathcal{L}_{2})` where
   :math:`\mathcal{L}_{1}` and :math:`\mathcal{L}_{2}` represent the

@@ -6,11 +6,11 @@ from scipy.optimize import fsolve
 
 import function as ft
 """ --------------------------------------------------------------------------------------
-Inferring interaction from data by Free Energy Minimization (FEM)
+Inferring interaction from data by Expectation Reflection (ER)
 input: time series s
 output: interaction w, local field h0
 """
-def fem(s):
+def er(s):
     l,n = np.shape(s)
     m = np.mean(s[:-1],axis=0)
     ds = s[:-1] - m
@@ -40,9 +40,10 @@ def fem(s):
                         
             if cost[iloop] >= cost[iloop-1]: break
                        
-            h *= np.divide(s1,s_model, out=np.ones_like(s1), where=s_model!=0)
+            #h *= np.divide(s1,s_model, out=np.ones_like(s1), where=s_model!=0)
             #t = np.where(s_model !=0.)[0]
-            #h[t] *= s1[t]/s_model[t]
+            t = s_model !=0            
+            h[t] *= s1[t]/s_model[t]
             
         W[i0,:] = w[:]
         #H0[i0] = h0
@@ -304,7 +305,7 @@ def infer_hidden(s,nh,method):
         if method == 'tap': w = tap(s)         
         if method == 'emf': w = emf(s,stop_criterion='yes')
         if method == 'mle': w = mle(s,1.,stop_criterion='yes')
-        if method == 'fem': w = fem(s) 
+        if method == 'er': w = er(s) 
                 
         if nh>0:
             s = update_hidden(s,w,n)            
