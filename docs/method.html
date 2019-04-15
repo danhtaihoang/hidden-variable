@@ -112,12 +112,12 @@ our method, Expectation Reflection (ER) [formerly Free Energy Minimization (FEM)
 <div class="line">(i) Initialize <span class="math notranslate nohighlight">\(W_{ij}\)</span> at random;</div>
 <div class="line">(ii) Compute local field <span class="math notranslate nohighlight">\(H_i(t) = \sum_j W_{ij} \sigma_j (t)\)</span>;</div>
 <div class="line">(iii) Update the local field:
-<span class="math notranslate nohighlight">\(H_i^2(t) = \sigma_i(t+1) / \langle  \sigma(t+1) \rangle_{\text{model}} H_i(t),\)</span>
+<span class="math notranslate nohighlight">\(H_i^\text{new}(t) = \sigma_i(t+1) / \langle  \sigma(t+1) \rangle_{\text{model}} H_i(t),\)</span>
 where <span class="math notranslate nohighlight">\(\langle  \sigma(t+1) \rangle_{\text{model}}\)</span> represents
 model expectation. For binary variables,
 <span class="math notranslate nohighlight">\(\langle  \sigma(t+1) \rangle_{\text{model}} = \tanh H_{i}(t)\)</span>;</div>
 <div class="line">(iv) Extract coupling
-<span class="math notranslate nohighlight">\(W_{ij}^\text{new}= \sum_k \langle \delta E_i \delta \sigma_k  \rangle [C^{-1}]_{kj},\)</span>
+<span class="math notranslate nohighlight">\(W_{ij}^\text{new}= \sum_k \langle \delta H_i^\text{new} \delta \sigma_k  \rangle [C^{-1}]_{kj},\)</span>
 where <span class="math notranslate nohighlight">\(\langle \cdot \rangle\)</span> represents sample mean,
 <span class="math notranslate nohighlight">\(\delta f \equiv f -\langle f\rangle\)</span> and
 <span class="math notranslate nohighlight">\(C_{jk} \equiv \langle \delta\sigma_j\delta\sigma_k\rangle;\)</span></div>

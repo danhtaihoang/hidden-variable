@@ -7,12 +7,12 @@ Method
 | (i) Initialize :math:`W_{ij}` at random;
 | (ii) Compute local field :math:`H_i(t) = \sum_j W_{ij} \sigma_j (t)`;
 | (iii) Update the local field:
-  :math:`H_i^2(t) = \sigma_i(t+1) / \langle  \sigma(t+1) \rangle_{\text{model}} H_i(t),`
+  :math:`H_i^\text{new}(t) = \sigma_i(t+1) / \langle  \sigma(t+1) \rangle_{\text{model}} H_i(t),`
   where :math:`\langle  \sigma(t+1) \rangle_{\text{model}}` represents
   model expectation. For binary variables,
   :math:`\langle  \sigma(t+1) \rangle_{\text{model}} = \tanh H_{i}(t)`;
 | (iv) Extract coupling
-  :math:`W_{ij}^\text{new}= \sum_k \langle \delta E_i \delta \sigma_k  \rangle [C^{-1}]_{kj},`
+  :math:`W_{ij}^\text{new}= \sum_k \langle \delta H_i^\text{new} \delta \sigma_k  \rangle [C^{-1}]_{kj},`
   where :math:`\langle \cdot \rangle` represents sample mean,
   :math:`\delta f \equiv f -\langle f\rangle` and
   :math:`C_{jk} \equiv \langle \delta\sigma_j\delta\sigma_k\rangle;`
